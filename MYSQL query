@@ -1,0 +1,54 @@
+CREATE TABLE `member` (
+  `member_num` int NOT NULL AUTO_INCREMENT,
+  `member_id` varchar(30) NOT NULL,
+  `member_pw` blob NOT NULL,
+  `member_name` varchar(45) NOT NULL,
+  `member_email` varchar(50) DEFAULT NULL,
+  `member_home` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`member_num`),
+  UNIQUE KEY `member_id_UNIQUE` (`member_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+
+
+CREATE TABLE `friends` (
+  `id_1` varchar(45) NOT NULL,
+  `id_2` varchar(45) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+
+
+
+
+CREATE TABLE `board` (
+  `board_number` int NOT NULL AUTO_INCREMENT,
+  `board_title` varchar(50) NOT NULL,
+  `board_content` text NOT NULL,
+  `board_date` datetime DEFAULT NULL,
+  `board_name` varchar(20) NOT NULL,
+  `board_control` tinyint NOT NULL,
+  `board_img` tinyint NOT NULL,
+  `board_imgname` varchar(40) DEFAULT NULL,
+  `board_like` int NOT NULL DEFAULT '0',
+  `board_id` varchar(45) NOT NULL,
+  PRIMARY KEY (`board_number`),
+  UNIQUE KEY `board_number_UNIQUE` (`board_number`)
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+
+
+
+
+
+
+//not mine
+CREATE TABLE `chat1` (
+  `my_name` varchar(45) DEFAULT NULL,
+  `my_friend` varchar(45) DEFAULT NULL,
+  `chat` text
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+CREATE TABLE `friends` (
+  `id_1` varchar(45) NOT NULL,
+  `id_2` varchar(45) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
