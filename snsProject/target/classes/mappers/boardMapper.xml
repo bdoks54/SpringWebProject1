@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.myspring.sns.mapper.boardMapper">
+
+<select id="selectBoard" resultType="boardVO">
+	SELECT * from board order by board_date desc, board_number desc limit #{startRow},10
+</select>
+<insert id="insertBoard" parameterType="java.util.Map">
+			insert into board(board_title, board_content, board_date, board_name, board_control, board_img, board_imgname, board_id)
+			values(#{board_title}, #{board_content}, now(), #{board_name}, '1', #{board_img}, #{board_imgname}, #{board_id})
+</insert>
+
+<delete id="deleteBoard" parameterType="int">
+	delete from board where board_number = #{board_num}
+</delete>
+
+<select id="selectBoardByNum" resultType="boardVO" parameterType="int">
+	SELECT * from board where board_number=#{board_num}
+</select>
+
+<update id="updateBoard" parameterType="boardVO">
+	update board set board_title=#{board_title}, board_content=#{board_content}
+	where board_number=#{board_number}
+</update>
+
+<select id="selectNewBoardNO" resultType="int">
+	SELECT ifnull(max(board_number), "0")+1 from board
+</select>
+
+<update id="countBoard" parameterType="int">
+	UPDATE board SET board_like = board_like+1 where board_number = #{board_num}
+</update>
+
+<select id="selectMaxNum" resultType="int">
+	select max(board_number) from board
+</select>
+
+<update id="alterAI">
+	alter table board auto_increment= #{number};
+</update>
+
+<select id="searchBoard" parameterType="java.util.Map">
+	select * from board where board_title like '%#{str}%' or board_content like '%#{str}%' or board_name like '%#{str}%' limit #{startRow},10
+</select>
+
+<select id="selectImgBoard" resultType="boardVO">
+	SELECT * from board where board_img=1 order by board_date desc, board_number desc limit #{startRow},10
+</select>
+    
+</mapper>

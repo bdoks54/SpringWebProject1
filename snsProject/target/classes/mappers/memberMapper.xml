@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.myspring.sns.mapper.memberMapper">
+<resultMap type="memberVO" id="memResult">
+	<result property="member_num" column="member_num"/>
+	<result property="member_id" column="member_id"/>
+	<result property="member_pw" column="member_pw"/>
+	<result property="member_name" column="member_name"/>
+	<result property="member_email" column="member_email"/>
+	<result property="member_home" column="member_home"/>
+</resultMap>
+
+<select id="selectMember" resultMap="memResult">
+	SELECT member_num, member_id, member_pw, member_name, member_email, member_home from member
+</select>
+<insert id="insertMember" parameterType="memberVO">
+	insert into member(member_id, member_pw, member_name, member_email, member_home)
+	values(#{member_id},#{member_passwd},#{member_name},#{member_email},#{member_home})
+</insert>
+ 
+ <select id="loginCheck" resultType="String">
+ 	select member_name from member where member_id = #{member_id} and member_pw = #{member_passwd}
+ </select>
+ 
+ <select id="viewMember" resultType="memberVO">
+ 	SELECT member_num, member_id, member_pw, member_name, member_email, member_home from member where member_id= #{member_id} and member_pw = #{member_passwd}
+ </select>
+ 
+ <select id="confirmId" resultType="String">
+ 	select member_id from member where member_id=#{member_id}
+ </select>
+ 
+</mapper>

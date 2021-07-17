@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.myspring.sns.mapper.friendsMapper">
+
+<insert id="insertFriend" parameterType="friendsVO">
+	insert into friends values(#{id_1},#{id_2})
+</insert>
+
+<select id="selectFriendsList" resultType="friendsVO" parameterType="FriendsVO">
+	select * from friends where id_1 like #{id_1}
+</select>
+
+<delete id="deleteFriend" parameterType="friendsVO">
+		delete from friends where id_1 = #{id_1} and id_2 = #{id_2}
+</delete>
+
+</mapper>

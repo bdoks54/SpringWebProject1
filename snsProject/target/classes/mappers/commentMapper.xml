@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.myspring.sns.mapper.commentMapper">
+	<select id="selectCommentList" resultType="commentVO">
+		select * from comment where comment_boardNum between (select MIN(board_number) from (select * from board order by board_date desc, board_number desc limit #{startRow},10) AS tmp) and (select MAX(board_number) from (select * from board order by board_date desc, board_number desc limit #{startRow},10) AS tmp2) order by comment_num desc
+	</select>
+	
+	<select id="selectReCommentList" resultType="commentVO">
+		select * from comment where comment_parent is not null
+	</select>
+	
+	<insert id="insertComment">
+		insert into comment(comment_id,comment_name, comment_boardNum, comment_date, comment_content)
+		values(#{comment_id}, #{comment_name}, #{comment_boardNum}, now(), #{comment_content})
+	</insert>
+	
+	<insert id="insertReComment">
+		insert into comment(comment_name, comment_boardNum, comment_date, comment_parent, comment_content)
+		values(#{comment_name}, #{comment_boardNum}, curdate(), #{commnet_parent}, #{comment_content})
+	</insert>
+	
+	<update id="updateComment">
+		update comment set comment_content = #{comment_content} where comment_num = #{comment_num}
+	</update>
+	
+	<delete id="deleteComment">
+		delete from comment where comment_num = #{comment_num}
+	</delete>
+	
+	<select id="getCommentList" resultType="commentVO">
+		select * from comment where comment_boardNum = #{comment_boardNum}
+	</select>
+	
+
+</mapper>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.myspring.sns.mapper.chat1Mapper">
+	<select id="selectChatList" resultType="Chat1VO" parameterType="chat1VO">
+		select * from chat1 where my_name = '${my_name}' and my_friend = '${my_friend}'
+	</select>
+	
+	<insert id="insertChat" parameterType="chat1VO">
+		insert into chat1(my_name, my_friend, chat)
+		values('${my_name}', '${my_friend}', '${chat}')
+	</insert>
+	
+	<delete id="deleteChat" parameterType="chat1VO">
+		delete from chat1 where my_name = '${my_name}' and my_friend = '${my_friend}'
+	</delete>
+	
+	<select id="selectChatList2" resultType="Chat1VO" parameterType="chat1VO">
+		select * from chat1 where my_name = '${my_friend}' and my_friend = '${my_name}'
+	</select>
+
+</mapper>

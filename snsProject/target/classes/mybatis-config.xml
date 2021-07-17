@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration 
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+    <configuration>
+ 		<typeAliases>
+ 			<typeAlias type="com.myspring.sns.member.vo.MemberVO" alias="memberVO"/><!-- memberMapper.xml에서 MemberVO클래스를  memberVO 이름으로 사용하기위해서-->
+ 			<typeAlias type="com.myspring.sns.board.vo.BoardVO" alias="boardVO"/>
+ 			<typeAlias type="com.myspring.sns.comment.vo.CommentVO" alias="commentVO"/>
+ 			<typeAlias type="com.myspring.sns.friends.vo.FriendsVO" alias="friendsVO"/>
+         	<typeAlias type="com.myspring.sns.chat.vo.Chat1VO" alias="chat1VO"/>
+ 		</typeAliases>
+        
+    </configuration>
